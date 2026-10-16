@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LifeBoard</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <h1>LifeBoard</h1>
+        </header>
+
+        <main>
+            <section>
+                <h2 id="salutation"></h2>
+                <p>Bienvenue sur votre tableau de bord personnel.</p>
+                <p>Votre tableau de bord pour gérer vos tâches, votre budget et vos événements.</p>
+                    <label for="prenom">Prenom:</label>
+                    <input type="text" id="prenom" name="nom" placeholder="Entrez votre nom">
+            </section>
+
+            <section id="horloge">
+                <h2>HORLOGE</h2>
+                <p id="heure"></p>
+                <p id="date"></p>
+            </section>
+
+            <section>
+                <p id="citation"></p>
+                <p id="auteur"></p>
+                <button id="Newcitation">Nouvelle citation</button>
+            </section>
+
+            <section>
+                <h2>COMPTE A REBOURS</h2>
+                <p id="compte-a-rebours"></p>
+            </section>
+        
+        </main>
+        <script src="accueil.js"></script> 
+    </body>
+</html>
