@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LifeBoard-taches</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Mes taches</h1>
+        </header>
+
+        <main>
+            <section>
+                <form id="formulaire-tache">
+                    <label for="titre-tache">Nouvelle tache</label>
+                    <input type="text" id="titre-tache" placeholder="EX: faire le menage">
+                    <button type="submit">Ajouter</button>
+                </form>
+            </section>
+
+            <section>
+                <ul id="liste-taches">
+
+                </ul>
+                <p id="pasdetache"></p>
+                <p id="nombretache"></p>
+            </section>
+        </main>
+        <script src="taches.js"></script>
+    </body>
+</html>
