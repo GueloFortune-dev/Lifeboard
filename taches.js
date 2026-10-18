@@ -17,6 +17,10 @@ function render() {
     
     for(const tache of taches){
         const li=document.createElement("li");
+        const boutonEteindre=document.createElement("button");
+        boutonEteindre.textContent = "Supprimer";
+        li.appendChild(boutonEteindre);
+
         const caseACocher=document.createElement("input");
 
         caseACocher.addEventListener("change",function () {
