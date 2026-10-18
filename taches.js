@@ -9,8 +9,14 @@ function render() {
     
     for(const tache of taches){
         const li=document.createElement("li");
-        li.textContent= tache.titre;
+        const caseACocher=document.createElement("input");
+        const titre = document.createElement("span");
+
         liste.appendChild(li);
+        caseACocher.type = "checkbox";
+        li.appendChild(caseACocher);
+        titre.textContent = tache.titre;
+        li.appendChild(titre);
     }
 }
 
