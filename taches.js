@@ -9,9 +9,25 @@ function render() {
     
     for(const tache of taches){
         const li=document.createElement("li");
-        li.textContent= taches.titre;
+        li.textContent= tache.titre;
         liste.appendChild(li);
     }
 }
 
-render();
+const formulaire=document.getElementById("formulaire-tache");
+const champ = document.getElementById("titre-tache");
+
+function ajouterTache(event) {
+    event.preventDefault();
+    const tachesAjouter=champ.value.trim();
+    if( tachesAjouter === "") {
+        return;
+    }
+    taches.push({id:Date.now(), titre: tachesAjouter, terminee: false});
+    champ.value= "";
+    render();
+}
+
+ formulaire.addEventListener("submit",ajouterTache);
+
+ render();
