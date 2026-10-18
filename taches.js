@@ -51,6 +51,19 @@ function render() {
         li.appendChild(titre);
         li.appendChild(boutonSupprimer);
     }
+
+    const resteTache=taches.filter(function(l){
+        return !l.terminee;
+    }).length; 
+
+    document.getElementById("nombretache").textContent = "il vous reste "+ resteTache+ " taches a faire.";
+
+    const messageVide = document.getElementById("pasdetache");
+    if(taches.length === 0){
+        messageVide.textContent = "Rien a faire, profiter!";
+    } else {
+        messageVide.textContent="";
+    }
 }
 
 const formulaire=document.getElementById("formulaire-tache");
