@@ -1,7 +1,14 @@
-const taches=[
-    {id:"1" , titre:"faire les courses", terminee: true},
-    {id:"2", titre:"apprendre l'anglais", terminee: false}
+let taches=[
+    {id: 1 , titre:"faire les courses", terminee: true},
+    {id: 2, titre:"apprendre l'anglais", terminee: false}
 ];
+
+function supprimerTache(id){
+    taches = taches.filter(function(l){
+        return l.id !== id;
+    });
+    render();
+}
 
  function basculerTache(id) {
     const tache = taches.find(function(l) {
@@ -17,9 +24,12 @@ function render() {
     
     for(const tache of taches){
         const li=document.createElement("li");
-        const boutonEteindre=document.createElement("button");
-        boutonEteindre.textContent = "Supprimer";
-        li.appendChild(boutonEteindre);
+        const boutonSupprimer=document.createElement("button");
+        boutonSupprimer.textContent = "Supprimer";
+
+        boutonSupprimer.addEventListener("click", function () {
+            supprimerTache(tache.id);
+        });
 
         const caseACocher=document.createElement("input");
 
@@ -39,6 +49,7 @@ function render() {
         li.appendChild(caseACocher);
         titre.textContent = tache.titre;
         li.appendChild(titre);
+        li.appendChild(boutonSupprimer);
     }
 }
 
