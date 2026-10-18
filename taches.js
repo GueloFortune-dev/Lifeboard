@@ -14,6 +14,7 @@ function render() {
 
         liste.appendChild(li);
         caseACocher.type = "checkbox";
+        caseACocher.checked= tache.terminee;
         li.appendChild(caseACocher);
         titre.textContent = tache.titre;
         li.appendChild(titre);
@@ -37,3 +38,4 @@ function ajouterTache(event) {
  formulaire.addEventListener("submit",ajouterTache);
 
  render();
+
