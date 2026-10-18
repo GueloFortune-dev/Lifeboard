@@ -11,6 +11,10 @@ function render() {
         const li=document.createElement("li");
         const caseACocher=document.createElement("input");
         const titre = document.createElement("span");
+        
+        if(tache.terminee){
+            titre.classList.add("terminee");
+        }
 
         liste.appendChild(li);
         caseACocher.type = "checkbox";
