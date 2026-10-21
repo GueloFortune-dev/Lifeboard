@@ -7,3 +7,8 @@
     text-decoration: line-through;
     color: gray;
 }
+
+.en-retard {
+    color: red;
+    font-weight: bold;
+}

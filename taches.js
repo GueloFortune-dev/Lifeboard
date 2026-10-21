@@ -43,6 +43,7 @@ function supprimerTache(id){
  }
 
 function render() {
+    const aujourdhui = new Date().toISOString().slice(0,10);
     const liste= document.getElementById("liste-taches");
     liste.textContent="";
     
@@ -73,10 +74,18 @@ function render() {
         li.appendChild(caseACocher);
         titre.textContent = tache.titre;
         li.appendChild(titre);
-        if(tache.categoie){
+        if(tache.categorie){
             const spanCategorie = document.createElement("span");
             spanCategorie.textContent = " [" + tache.categorie + "] ";
             li.appendChild(spanCategorie);
+        }
+        if(tache.echeance){
+            const spanEcheance = document.createElement("span");
+            spanEcheance.textContent = " [" + tache.echeance + "] ";
+            li.appendChild(spanEcheance);
+        }
+        if(tache.echeance && !tache.terminee && tache.echeance < aujourdhui){
+            li.classList.add("en-retard");
         }
         li.appendChild(boutonSupprimer);
     }
@@ -98,14 +107,14 @@ function render() {
 const formulaire=document.getElementById("formulaire-tache");
 const champ = document.getElementById("titre-tache");
 const selectCategorie=document.getElementById("categories-taches");
-
+const Echeance=document.getElementById("dateEcheance");
 function ajouterTache(event) {
     event.preventDefault();
     const tachesAjouter=champ.value.trim();
     if( tachesAjouter === "") {
         return;
     }
-    taches.push({id:Date.now(), titre: tachesAjouter, terminee: false, categorie:selectCategorie.value });
+    taches.push({id:Date.now(), titre: tachesAjouter, terminee: false, categorie:selectCategorie.value, echeance:Echeance.value});
     champ.value= "";
     sauvegarderEtat();
     render();
