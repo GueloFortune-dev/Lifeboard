@@ -1,7 +1,6 @@
-let taches=[
-    {id: 1 , titre:"faire les courses", terminee: true},
-    {id: 2, titre:"apprendre l'anglais", terminee: false}
-];
+const CLE_TACHES = "lifeboard:taches";
+
+let taches = chargerEtat();
 
 function supprimerTache(id){
     taches = taches.filter(function(l){
@@ -88,5 +87,19 @@ function ajouterTache(event) {
  function sauvegarderEtat(){
     localStorage.setItem("lifeboard:taches", JSON.stringify(taches));
  } 
+
+ function chargerEtat() {
+    const texte = localStorage.getItem("lifeboard:taches");
+    if (texte === null){
+        return [];
+    }
+    try {
+        return JSON.parse(texte);
+    }catch (erreur) {
+        console.error("Donnees abimees", erreur);
+        return [];
+    }
+ }
+
  
  render();
