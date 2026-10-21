@@ -7,6 +7,7 @@ function supprimerTache(id){
     taches = taches.filter(function(l){
         return l.id !== id;
     });
+    sauvegarderEtat();
     render();
 }
 
@@ -15,6 +16,7 @@ function supprimerTache(id){
         return l.id === id;
     });
     tache.terminee= !tache.terminee;
+    sauvegarderEtat();
     render();
  }
 
@@ -56,7 +58,7 @@ function render() {
         return !l.terminee;
     }).length; 
 
-    document.getElementById("nombretache").textContent = "il vous reste "+ resteTache+ " taches a faire.";
+    document.getElementById("nombretache").textContent = "il vous reste "+ resteTache + " taches a faire.";
 
     const messageVide = document.getElementById("pasdetache");
     if(taches.length === 0){
@@ -77,10 +79,14 @@ function ajouterTache(event) {
     }
     taches.push({id:Date.now(), titre: tachesAjouter, terminee: false});
     champ.value= "";
+    sauvegarderEtat();
     render();
 }
 
  formulaire.addEventListener("submit",ajouterTache);
 
+ function sauvegarderEtat(){
+    localStorage.setItem("lifeboard:taches", JSON.stringify(taches));
+ } 
+ 
  render();
-
