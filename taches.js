@@ -14,7 +14,7 @@ function tachesVisibles() {
         });
     }
     return taches;
-};
+}
 
 document.getElementById("filtres").addEventListener("click", function (event){
     const bouton = event.target.closest("button");
@@ -73,6 +73,11 @@ function render() {
         li.appendChild(caseACocher);
         titre.textContent = tache.titre;
         li.appendChild(titre);
+        if(tache.categoie){
+            const spanCategorie = document.createElement("span");
+            spanCategorie.textContent = " [" + tache.categorie + "] ";
+            li.appendChild(spanCategorie);
+        }
         li.appendChild(boutonSupprimer);
     }
 
@@ -92,6 +97,7 @@ function render() {
 
 const formulaire=document.getElementById("formulaire-tache");
 const champ = document.getElementById("titre-tache");
+const selectCategorie=document.getElementById("categories-taches");
 
 function ajouterTache(event) {
     event.preventDefault();
@@ -99,7 +105,7 @@ function ajouterTache(event) {
     if( tachesAjouter === "") {
         return;
     }
-    taches.push({id:Date.now(), titre: tachesAjouter, terminee: false});
+    taches.push({id:Date.now(), titre: tachesAjouter, terminee: false, categorie:selectCategorie.value });
     champ.value= "";
     sauvegarderEtat();
     render();
