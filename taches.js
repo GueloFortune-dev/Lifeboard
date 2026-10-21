@@ -1,6 +1,29 @@
 const CLE_TACHES = "lifeboard:taches";
-
 let taches = chargerEtat();
+let filtreActuel = "toutes";
+
+function tachesVisibles() {
+    if(filtreActuel === "afaire") {
+        return taches.filter(function(t) {
+            return !t.terminee;
+        });
+    }
+    if(filtreActuel === "terminees") {
+        return taches.filter(function (t) {
+            return t.terminee;
+        });
+    }
+    return taches;
+};
+
+document.getElementById("filtres").addEventListener("click", function (event){
+    const bouton = event.target.closest("button");
+    if(bouton === null) {
+        return;
+    }
+    filtreActuel = bouton.dataset.filtre;
+    render();
+})
 
 function supprimerTache(id){
     taches = taches.filter(function(l){
@@ -23,7 +46,7 @@ function render() {
     const liste= document.getElementById("liste-taches");
     liste.textContent="";
     
-    for(const tache of taches){
+    for(const tache of tachesVisibles()){
         const li=document.createElement("li");
         const boutonSupprimer=document.createElement("button");
         boutonSupprimer.textContent = "Supprimer";
@@ -85,11 +108,11 @@ function ajouterTache(event) {
  formulaire.addEventListener("submit",ajouterTache);
 
  function sauvegarderEtat(){
-    localStorage.setItem("lifeboard:taches", JSON.stringify(taches));
+    localStorage.setItem(CLE_TACHES, JSON.stringify(taches));
  } 
 
  function chargerEtat() {
-    const texte = localStorage.getItem("lifeboard:taches");
+    const texte = localStorage.getItem(CLE_TACHES);
     if (texte === null){
         return [];
     }
