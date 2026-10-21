@@ -51,16 +51,7 @@ function render() {
         const li=document.createElement("li");
         const boutonSupprimer=document.createElement("button");
         boutonSupprimer.textContent = "Supprimer";
-
-        boutonSupprimer.addEventListener("click", function () {
-            supprimerTache(tache.id);
-        });
-
         const caseACocher=document.createElement("input");
-
-        caseACocher.addEventListener("change",function () {
-            basculerTache(tache.id);
-        })
 
         const titre = document.createElement("span");
         
@@ -87,6 +78,9 @@ function render() {
         if(tache.echeance && !tache.terminee && tache.echeance < aujourdhui){
             li.classList.add("en-retard");
         }
+        li.dataset.id = tache.id;
+        caseACocher.dataset.action = "basculer";
+        boutonSupprimer.dataset.action = "supprimer";
         li.appendChild(boutonSupprimer);
     }
 
@@ -108,6 +102,7 @@ const formulaire=document.getElementById("formulaire-tache");
 const champ = document.getElementById("titre-tache");
 const selectCategorie=document.getElementById("categories-taches");
 const Echeance=document.getElementById("dateEcheance");
+
 function ajouterTache(event) {
     event.preventDefault();
     const tachesAjouter=champ.value.trim();
@@ -138,6 +133,21 @@ function ajouterTache(event) {
         return [];
     }
  }
+
+    document.getElementById("liste-taches").addEventListener("click", function(event) {
+        const ligne = event.target.closest("li");
+        if(ligne === null) {
+            return;
+        }
+        const id = Number(ligne.dataset.id);
+        const action = event.target.dataset.action;
+        if(action === "supprimer") {
+            supprimerTache(id);
+        }
+        if(action === "basculer") {
+            basculerTache(id);
+        }
+    });
 
  
  render();
