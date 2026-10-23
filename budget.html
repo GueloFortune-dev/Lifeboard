@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>LifeBoard-budget</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Mon budget</h1>
+        </header>
+        
+        <main>
+            <section>
+                <form id="argent">
+                    <label><input type="radio" name="sens" value="revenu" checked> Revenu</label>
+                    <label><input type="radio" name="sens" value="depense">Depense</label>
+                    <label for="montant">Montant (FCFA)</label>
+                    <input type="number" required min="1" id="montant">
+                    <p id="erreur-montant"></p>
+                    <label for="categorie-buddget"></label>
+                    <select id="categorie-budget">
+                        <option value="alimentation">Alimentation</option>
+                        <option value="transport">Transport</option>
+                        <option value="connexion">Connexion</option>
+                        <option value="loisir">Loisir</option>
+                        <option value="achat">Achat</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                    <label for="dateJour"><input type="date" id="dateJour" required></label>
+                    <p id="erreur-date"></p>
+                    <label for="texteDescription" >Description: </label>
+                    <input type="text" id="texteDescription">
+                    <button type="submit" id="bouton">Ajouter</button>
+                </form>  
+            </section>
+
+            <section>
+                <p id="erreur"></p>
+            </section>
+
+            <section>
+                <p id="revenus"></p>
+                <p id="depenses"></p>
+                <p id="solde"></p>
+            </section>
+
+            <ul id="operation"></ul>
+ 
+        </main>
+        <script src="budget.js"></script>
+    </body> 
+</html>
